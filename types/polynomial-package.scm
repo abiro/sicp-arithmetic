@@ -171,9 +171,9 @@
 
    (define (equ?-poly p1 p2)
      (and (same-variable? (variable p1) (variable p2))
-	  (fold-left eq? #t (map equ?
-				 (all-terms (term-list p1))
-				 (all-terms (term-list p2))))))
+	  (every equ?
+		 (all-terms (term-list p1))
+		 (all-terms (term-list p2)))))
 
    (define (gcd-poly p1 p2)
      (if (same-variable? (variable p1) (variable p2))

@@ -1,23 +1,20 @@
 (load "arithmetic-package.scm")
 
 (define (run-tests tests)
-  (fold-left
-   eq?
-   #t
-   (map (lambda (test)
-	  (let ((equal? (eval (car test) (nearest-repl/environment)))
-		(term1 (eval (cadr test) (nearest-repl/environment)))
-		(term2 (eval (caddr test) (nearest-repl/environment))))
-	    (if (equal? term1 term2)
-		#t
-		;; Prevent map from catching the error.
-		(standard-error-handler (error "\nThe following test failed:\n"
-					       test
-					       "Term 1:"
-					       term1
-					       "Term 2:"
-					       term2)))))
-	tests)))
+  (every (lambda (test)
+	   (let ((equal? (eval (car test) (nearest-repl/environment)))
+		 (term1 (eval (cadr test) (nearest-repl/environment)))
+		 (term2 (eval (caddr test) (nearest-repl/environment))))
+	     (if (equal? term1 term2)
+		 #t
+		 ;; Prevent map from catching the error.
+		 (standard-error-handler (error "\nThe following test failed:\n"
+						test
+						"Term 1:"
+						term1
+						"Term 2:"
+						term2)))))
+	 tests))
 
 
 (define mpt make-polynomial-term)
@@ -175,5 +172,5 @@
 (run-tests rational-tests)
 (run-tests scheme-number-tests)
 
-(begin (newline)
-       (display "+++ tests succesfully completed +++"))
+(newline)
+(display "+++ tests succesfully completed +++")
