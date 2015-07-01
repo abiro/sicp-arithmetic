@@ -1,5 +1,6 @@
 This is a generic arithmetic package implemented in MIT/GNU Scheme 9.2 as set forth in [Section 2.5](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-18.html) of the book,
 [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/) by Hal Abelson, Jerry Sussman and Julie Sussman.
+The purpose of this work was to learn data-directed programming (polymorphism).
 A lot of the code was provided by the authors.
 
 The following data types are supported:
